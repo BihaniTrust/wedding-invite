@@ -1,0 +1,85 @@
+.butterflies {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.butterflies--on {
+  opacity: 1;
+}
+
+/* jagah badalna */
+.butterfly {
+  position: absolute;
+  left: var(--x0);
+  top: var(--y0);
+  animation: fly var(--dur) ease-in-out var(--delay) infinite;
+  animation-play-state: paused;
+}
+
+/* udne ki disha ki taraf muh ghumana (fly ke saath sync) */
+.butterfly__dir {
+  animation: heading var(--dur) ease-in-out var(--delay) infinite;
+  animation-play-state: paused;
+}
+
+.butterfly__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation:
+    flap var(--flap) ease-in-out infinite alternate,
+    sway 3.2s ease-in-out infinite alternate;
+  animation-play-state: paused;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+  user-select: none;
+}
+
+.butterflies--on .butterfly,
+.butterflies--on .butterfly__dir,
+.butterflies--on .butterfly__img {
+  animation-play-state: running;
+}
+
+@keyframes fly {
+  0%, 100% { left: var(--x0); top: var(--y0); }
+  25%      { left: var(--x1); top: var(--y1); }
+  50%      { left: var(--x2); top: var(--y2); }
+  75%      { left: var(--x3); top: var(--y3); }
+}
+
+/* har hisse mein ek disha, naye hisse ki shuruat mein dheere se mudna */
+@keyframes heading {
+  0%   { rotate: calc(var(--as) + var(--off)); }
+  5%   { rotate: calc(var(--a0) + var(--off)); }
+  25%  { rotate: calc(var(--a0) + var(--off)); }
+  30%  { rotate: calc(var(--a1) + var(--off)); }
+  50%  { rotate: calc(var(--a1) + var(--off)); }
+  55%  { rotate: calc(var(--a2) + var(--off)); }
+  75%  { rotate: calc(var(--a2) + var(--off)); }
+  80%  { rotate: calc(var(--a3) + var(--off)); }
+  100% { rotate: calc(var(--a3) + var(--off)); }
+}
+
+@keyframes flap {
+  from { scale: 1 1; }
+  to   { scale: 0.3 1; }
+}
+
+/* halka sa idhar-udhar hilna */
+@keyframes sway {
+  from { rotate: -8deg; }
+  to   { rotate: 8deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .butterfly,
+  .butterfly__dir,
+  .butterfly__img {
+    animation: none;
+  }
+}

@@ -1,0 +1,66 @@
+.scroll-video {
+  position: relative;
+  height: 800vh;
+  background: var(--bg-bottom, #f6efd9);
+}
+
+.scroll-video__sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    var(--bg-top, #f6efd9) 50%,
+    var(--bg-bottom, #f6efd9) 50%
+  );
+}
+
+.scroll-video__frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: min(100%, calc(100vh * 9 / 16));
+  width: min(100%, calc(100dvh * 9 / 16));
+}
+
+
+.scroll-video__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+}
+
+.scroll-video__player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  clip-path: inset(3px 0 3px 0);
+}
+
+.scroll-video__debug {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 20;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font: 12px monospace;
+  pointer-events: none;
+}
+
+/* Sirf laptop par dark background */
+@media (min-width: 701px) {
+  .scroll-video,
+  .scroll-video__sticky {
+    background: #15110d;
+  }
+}
